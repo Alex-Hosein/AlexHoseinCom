@@ -1,0 +1,42 @@
+<h1 id="tableLabel">Bitcoin Miner S19J Progress</h1>
+
+<p></p>
+
+<table *ngIf="miningRevenues">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Uptime Percent</th>
+      <th>Time in Hours</th>
+      <th>Total Kilowatt Hours</th>
+      <th>Total Revenue BTC</th>
+      <th>Total Revenue USD</th>
+      <th>Total Cost</th>
+      <th>Total Profit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let miningRevenue of miningRevenues">
+      <td>{{ removeTime(miningRevenue.date) }}</td>
+      <td>{{ miningRevenue.uptimePercent }}</td>
+      <td>{{ miningRevenue.timeInHours }}</td>
+      <td>{{ miningRevenue.totalKilowattHours | number:'1.2-2'}}</td>
+      <td>{{ miningRevenue.totalRevenueBTC }}</td>
+      <td>{{ miningRevenue.totalRevenueUSD | currency:'USD':'symbol':'1.2-2'}}</td>
+      <td>{{ miningRevenue.totalCost | currency:'USD':'symbol':'1.2-2'}}</td>
+      <td [ngClass]="{ 'positive': miningRevenue.totalProfit >= 0, 'negative': miningRevenue.totalProfit < 0 }">{{ miningRevenue.totalProfit | currency:'USD':'symbol':'1.2-2'}}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr style="font-weight:bold">
+      <td>Total</td>
+      <td></td>
+      <td>{{ totalTimeInHours }}</td>
+      <td>{{ totalKilowattHours | number:'1.2-2'}}</td>
+      <td>{{ totalRevenueBtc }}</td>
+      <td>{{ totalRevenueUsd | currency:'USD':'symbol':'1.2-2'}}</td>
+      <td>{{ totalCost | currency:'USD':'symbol':'1.2-2'}}</td>
+      <td [ngClass]="{ 'positive': totalProfit >= 0, 'negative': totalProfit < 0 }">{{ totalProfit | currency:'USD':'symbol':'1.2-2'}}</td>
+    </tr>
+  </tfoot>
+</table>
