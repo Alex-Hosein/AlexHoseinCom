@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "alexhoseincom.client:build:production"
+              "browserTarget": "alexhoseincom.client:build:production"
             },
             "development": {
-              "buildTarget": "alexhoseincom.client:build:development"
+              "browserTarget": "alexhoseincom.client:build:development"
             }
           },
           "defaultConfiguration": "development",
