@@ -33,7 +33,8 @@ namespace Infrastructure.Services
                 {
                     Date = node.GetHashrateScoreHistoryNode.Date.ToUniversalTime(),
                     UptimePercent = node.GetHashrateScoreHistoryNode.UptimePercentage,
-                    TotalRevenueBTC = node.GetHashrateScoreHistoryNode.Revenue
+                    TotalRevenueBTC = node.GetHashrateScoreHistoryNode.Revenue,
+                    Hashrate = node.GetHashrateScoreHistoryNode.Hashrate / 1000000000000
                 };
                 miningRevenues.Add(miningRevenue);
             }

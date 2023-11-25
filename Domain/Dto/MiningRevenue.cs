@@ -12,5 +12,6 @@ namespace Domain.Dto
         public double UptimePercent { get;set; }
         public double TimeInHours => UptimePercent / 100 * 24;
         public double TotalRevenueBTC { get; set; }
+        public double Hashrate { get; set; }
     }
 }

@@ -6,6 +6,7 @@ interface MiningRevenueResponse {
   uptimePercent: number;
   timeInHours: number;
   totalRevenueBTC: string;
+  hashrate: number;
 }
 
 interface MiningRevenue {
@@ -17,6 +18,7 @@ interface MiningRevenue {
   totalRevenueUSD: number;
   totalCost: number;
   totalProfit: number;
+  hashrate: number;
 }
 
 @Component({
@@ -69,7 +71,8 @@ export class AppComponent implements OnInit {
             totalRevenueBTC: miningRevenueResponse.totalRevenueBTC,
             totalRevenueUSD: totalRevenue,
             totalCost: totalCost,
-            totalProfit: totalRevenue - totalCost
+            totalProfit: totalRevenue - totalCost,
+            hashrate: miningRevenueResponse.hashrate * 100 / miningRevenueResponse.uptimePercent
           }
           this.miningRevenues.push(miningRevenue);
         });
@@ -113,7 +116,8 @@ export class AppComponent implements OnInit {
           totalRevenueBTC: (this.pendingBalance - this.totalRevenueBtc).toString().slice(0,10),
           totalRevenueUSD: (this.pendingBalance - this.totalRevenueBtc) * this.currentBitcoinPrice,
           totalCost: 0,
-          totalProfit: 0
+          totalProfit: 0,
+          hashrate : 0
         }
 
         this.miningRevenues.unshift(estimatedMiningRevenue)

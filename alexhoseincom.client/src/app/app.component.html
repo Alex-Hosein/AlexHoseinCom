@@ -1,6 +1,6 @@
 <h1 id="tableLabel">Bitcoin Miner S19J Progress</h1>
 
-<p>Note: Revenue, Cost and Profit are calculated when total daily uptime has posted</p>
+<p>Note: Today is not part of total until uptime has posted</p>
 <table>
   <tbody>
     <tr style="background-color: initial;font-weight: bold">
@@ -20,6 +20,7 @@
       <th>Date</th>
       <th>Uptime (Percent)</th>
       <th>Uptime (Hours)</th>
+      <th>Hashrate (GH/s)</th>
       <th>Total Kilowatt Hours</th>
       <th>Total Revenue (BTC)</th>
       <th>Total Revenue (USD)</th>
@@ -32,6 +33,7 @@
       <td>{{ removeTime(miningRevenue.date) }}</td>
       <td>{{ miningRevenue.uptimePercent }}%</td>
       <td>{{ miningRevenue.timeInHours | number:'1.2-2'}}</td>
+      <td>{{ miningRevenue.hashrate  | number:'1.2-2'}}</td>
       <td>{{ miningRevenue.totalKilowattHours | number:'1.2-2'}}</td>
       <td>{{ miningRevenue.totalRevenueBTC }}</td>
       <td>{{ miningRevenue.totalRevenueUSD | currency:'USD':'symbol':'1.2-2'}}</td>
@@ -44,6 +46,7 @@
       <td>Total</td>
       <td>{{ totalUptimePercent | number:'1.2-2'}}%</td>
       <td>{{ totalTimeInHours | number:'1.2-2'}}</td>
+      <td></td>
       <td>{{ totalKilowattHours | number:'1.2-2'}}</td>
       <td>{{ totalRevenueBtc | number:'1.8-8' }}</td>
       <td>{{ totalRevenueUsd | currency:'USD':'symbol':'1.2-2'}}</td>
