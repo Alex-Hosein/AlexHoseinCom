@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   getMiningRevenue() {
-    this.http.get<MiningRevenueResponse[]>(`${environment.apiUrl}/Miner/GetTotalMiningRevenue`).subscribe(
+    this.http.get<MiningRevenueResponse[]>(`${environment.apiUrl}Miner/GetTotalMiningRevenue`).subscribe(
       (result) => {
 
         result.forEach(miningRevenueResponse => {
@@ -82,7 +82,7 @@ export class AppComponent implements OnInit {
   }
 
   getBitcoinPricing() {
-    this.http.get<number>(`${environment.apiUrl}//Miner/GetBitcoinPricing`).subscribe(
+    this.http.get<number>(`${environment.apiUrl}Miner/GetBitcoinPricing`).subscribe(
       (result) => {
         this.currentBitcoinPrice = result;
         this.getMiningRevenue();
@@ -94,7 +94,7 @@ export class AppComponent implements OnInit {
   }
 
   getPendingBalance() {
-    this.http.get<string>(`${environment.apiUrl}//Miner/GetPendingBalance`).subscribe(
+    this.http.get<string>(`${environment.apiUrl}Miner/GetPendingBalance`).subscribe(
       (result) => {
         this.pendingBalance = parseFloat(result);
 
