@@ -27,8 +27,10 @@ interface MiningRevenue {
 export class AppComponent implements OnInit {
   public miningRevenues: MiningRevenue[] = [];
   public pendingBalance: number = 0;
+  public pricePerKilowattHour: number = .110469375;
 
   public currentBitcoinPrice: number = 0;
+  public totalUptimePercent:number = 0
   public totalTimeInHours: number = 0;
   public totalKilowattHours: number = 0;
   public totalRevenueBtc: number = 0;
@@ -49,8 +51,9 @@ export class AppComponent implements OnInit {
           let totalRevenueBtcParse = parseFloat(miningRevenueResponse.totalRevenueBTC);
           let totalKilowattHours = miningRevenueResponse.timeInHours * 2800 / 1000;
           let totalRevenue = totalRevenueBtcParse  * this.currentBitcoinPrice;
-          let totalCost = totalKilowattHours * .110469375
+          let totalCost = totalKilowattHours * this.pricePerKilowattHour
 
+          this.totalUptimePercent += (miningRevenueResponse.uptimePercent / result.length);
           this.totalTimeInHours += miningRevenueResponse.timeInHours;
           this.totalKilowattHours += totalKilowattHours;
           this.totalRevenueBtc += totalRevenueBtcParse;

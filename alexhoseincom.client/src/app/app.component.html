@@ -1,16 +1,28 @@
 <h1 id="tableLabel">Bitcoin Miner S19J Progress</h1>
 
 <p>Note: Revenue, Cost and Profit are calculated when total daily uptime has posted</p>
+<table>
+  <tbody>
+    <tr style="background-color: initial;font-weight: bold">
+      <td>Bitcoin Price:</td>
+      <td>${{currentBitcoinPrice | number:'1.2-2'}}</td>
+    </tr>
+    <tr style="background-color: initial; font-weight: bold">
+      <td>Price per kWh:</td>
+      <td>${{ pricePerKilowattHour | number:'1.2-2'}}</td>
+    </tr>
+  </tbody>
+</table>
 
 <table *ngIf="miningRevenues">
   <thead>
     <tr>
       <th>Date</th>
-      <th>Uptime Percent</th>
-      <th>Time in Hours</th>
+      <th>Uptime (Percent)</th>
+      <th>Uptime (Hours)</th>
       <th>Total Kilowatt Hours</th>
-      <th>Total Revenue BTC</th>
-      <th>Total Revenue USD</th>
+      <th>Total Revenue (BTC)</th>
+      <th>Total Revenue (USD)</th>
       <th>Total Cost</th>
       <th>Total Profit</th>
     </tr>
@@ -18,7 +30,7 @@
   <tbody>
     <tr *ngFor="let miningRevenue of miningRevenues">
       <td>{{ removeTime(miningRevenue.date) }}</td>
-      <td>{{ miningRevenue.uptimePercent }}</td>
+      <td>{{ miningRevenue.uptimePercent }}%</td>
       <td>{{ miningRevenue.timeInHours | number:'1.2-2'}}</td>
       <td>{{ miningRevenue.totalKilowattHours | number:'1.2-2'}}</td>
       <td>{{ miningRevenue.totalRevenueBTC }}</td>
@@ -30,10 +42,10 @@
   <tfoot>
     <tr style="font-weight:bold">
       <td>Total</td>
-      <td></td>
+      <td>{{ totalUptimePercent | number:'1.2-2'}}%</td>
       <td>{{ totalTimeInHours | number:'1.2-2'}}</td>
       <td>{{ totalKilowattHours | number:'1.2-2'}}</td>
-      <td>{{ totalRevenueBtc }}</td>
+      <td>{{ totalRevenueBtc | number:'1.8-8' }}</td>
       <td>{{ totalRevenueUsd | currency:'USD':'symbol':'1.2-2'}}</td>
       <td>{{ totalCost | currency:'USD':'symbol':'1.2-2'}}</td>
       <td [ngClass]="{ 'positive': totalProfit > 0, 'negative': totalProfit < 0 }">{{ totalProfit | currency:'USD':'symbol':'1.2-2'}}</td>
