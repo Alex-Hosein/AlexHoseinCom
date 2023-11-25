@@ -27,3 +27,8 @@ table {
 .negative{
     color: red;
 }
+
+tbody tr:first-child {
+  font-weight: bold;
+  background-color: #ffd800;
+}

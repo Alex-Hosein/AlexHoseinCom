@@ -78,7 +78,7 @@ namespace Infrastructure.Services
             return workerDetail;
         }
 
-        public async Task<decimal> GetPendingBalance()
+        public async Task<string> GetPendingBalance()
         {
             var body = new { query = (string?)null, documentId = "4def7c79a628f8a9b028a5573e3cbce5", variables = new { username = "coldbakd", cid = "BTC" } };
             var content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
@@ -86,9 +86,7 @@ namespace Infrastructure.Services
 
             var responseContent = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<dynamic>(responseContent);
-            decimal.TryParse(result?.data.wallet.pendingBalance, out decimal parsedBalance);
-
-            return parsedBalance;
+            return result?.data.wallet.pendingBalance;
         }
 
         public async Task<string> GetWorkerHashRate()

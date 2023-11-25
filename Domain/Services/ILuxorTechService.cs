@@ -11,7 +11,7 @@ namespace Domain.Services
     {
         Task<List<MiningRevenue>> GetTotalMiningRevenue();
         Task<WorkerDetails> GetWorkerDetails();
-        Task<decimal> GetPendingBalance();
+        Task<string> GetPendingBalance();
         Task<string> GetWorkerHashRate();
         Task<string> GetMiningSummary();
         Task<string> GetHashRateScoreHistory();

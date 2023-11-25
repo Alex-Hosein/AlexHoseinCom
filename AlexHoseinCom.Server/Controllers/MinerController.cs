@@ -31,6 +31,13 @@ namespace Application.Controllers
             return await _bitcoinService.GetBitcoinPricing();
         }
 
+        [HttpGet]
+        [Route("GetPendingBalance")]
+        public async Task<string> GetPendingBalance()
+        {
+            return await _luxorTechService.GetPendingBalance();
+        }
+
         /*
         [HttpGet]
         [Route("GetWorkerDetails")]
@@ -39,12 +46,7 @@ namespace Application.Controllers
             return await _luxorTechService.GetWorkerDetails();
         }
 
-        [HttpGet]
-        [Route("GetPendingBalance")]
-        public async Task<decimal> GetPendingBalance()
-        {
-            return await _luxorTechService.GetPendingBalance();
-        }
+        
 
         [HttpGet]
         [Route("GetWorkerHashRate")]
