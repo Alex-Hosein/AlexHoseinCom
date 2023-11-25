@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
+import { Title } from '@angular/platform-browser';
+
 interface MiningRevenueResponse {
   date: string;
   uptimePercent: number;
@@ -39,9 +41,10 @@ export class AppComponent implements OnInit {
   public totalRevenueUsd: number = 0;
   public totalCost: number = 0;
   public totalProfit: number = 0;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private titleService: Title) {}
 
   ngOnInit() {
+    this.titleService.setTitle("Miner")
     this.getBitcoinPricing();
   }
 
