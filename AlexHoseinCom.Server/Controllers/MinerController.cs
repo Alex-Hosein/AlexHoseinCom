@@ -38,6 +38,13 @@ namespace Application.Controllers
             return await _luxorTechService.GetPendingBalance();
         }
 
+        [HttpGet]
+        [Route("GetTransactionTotalsHistory")]
+        public async Task<double> GetTransactionTotalsHistory()
+        {
+            return await _luxorTechService.GetTransactionTotalsHistory();
+        }
+
         /*
         [HttpGet]
         [Route("GetWorkerDetails")]

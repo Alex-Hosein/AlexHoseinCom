@@ -76,5 +76,19 @@
                 }
               }
             }";
+
+        public const string GetTransactionHistory = @"query getTransactionHistory {
+          getTransactionHistory(cid: BTC, uname: ""coldbakd"", first: 10) {
+            nodes {
+              amount
+              coinPrice
+              createdAt
+              rowId
+              status
+              transactionId
+            }
+          }
+        }
+        ";
     }
 }

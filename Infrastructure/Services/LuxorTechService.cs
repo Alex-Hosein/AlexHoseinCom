@@ -21,7 +21,6 @@ namespace Infrastructure.Services
             var miningRevenues = new List<MiningRevenue>();
             var hashRateScoreHistoryString = await GetHashRateScoreHistory();
             var hashRateScoreHistoryObject = JsonConvert.DeserializeObject<HashrateScoreHistoryResponse>(hashRateScoreHistoryString);
-
             if(hashRateScoreHistoryObject == null ) 
             {
                 return miningRevenues;
@@ -118,6 +117,24 @@ namespace Infrastructure.Services
 
             var responseContent = await response.Content.ReadAsStringAsync();
             return responseContent;
+        }
+
+        public async Task<double> GetTransactionTotalsHistory()
+        {
+            var body = new { query = LuxorTechConstants.GetTransactionHistory };
+            var content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync(LuxorTechConstants.Url, content);
+
+            var responseContent = await response.Content.ReadAsStringAsync();
+            var transactionHistoryResponse = JsonConvert.DeserializeObject<GetTransactionHistoryResponse>(responseContent);
+
+            double totals = 0;
+            foreach (var item in transactionHistoryResponse.TransactionHistoryData.GetTransactionHistory.TransactionHistoryNodes)
+            {
+                totals += item.Amount;
+            }
+
+            return totals;
         }
     }
 }

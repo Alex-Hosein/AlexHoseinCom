@@ -15,5 +15,6 @@ namespace Domain.Services
         Task<string> GetWorkerHashRate();
         Task<string> GetMiningSummary();
         Task<string> GetHashRateScoreHistory();
+        Task<double> GetTransactionTotalsHistory();
     }
 }

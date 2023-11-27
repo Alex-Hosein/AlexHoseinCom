@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
   public pendingBalance: number = 0;
   public pricePerKilowattHour: number = .110469375;
 
+  public transactionTotalRevenue: number = 0;
   public currentBitcoinPrice: number = 0;
   public totalUptimePercent:number = 0
   public totalTimeInHours: number = 0;
@@ -45,6 +46,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle("Miner")
+    this.getTransactionTotalsHistory();
     this.getBitcoinPricing();
   }
 
@@ -54,7 +56,7 @@ export class AppComponent implements OnInit {
 
         result.forEach(miningRevenueResponse => {
           let totalRevenueBtcParse = parseFloat(miningRevenueResponse.totalRevenueBTC);
-          let totalKilowattHours = miningRevenueResponse.timeInHours * 2800 / 1000;
+          let totalKilowattHours = miningRevenueResponse.timeInHours * 2832 / 1000;
           let totalRevenue = totalRevenueBtcParse  * this.currentBitcoinPrice;
           let totalCost = totalKilowattHours * this.pricePerKilowattHour
 
@@ -79,13 +81,11 @@ export class AppComponent implements OnInit {
           }
           this.miningRevenues.push(miningRevenue);
         });
-        this.getPendingBalance();
-       
-        
-
       },
       (error) => {
         console.error(error);
+      }, () => {
+        this.getPendingBalance();
       }
     );
   }
@@ -106,8 +106,9 @@ export class AppComponent implements OnInit {
     this.http.get<string>(`${environment.apiUrl}Miner/GetPendingBalance`).subscribe(
       (result) => {
         this.pendingBalance = parseFloat(result);
-
-        console.log(this.miningRevenues);
+        console.log(this.totalRevenueBtc)
+        console.log(this.transactionTotalRevenue)
+        console.log(this.pendingBalance)
         let dateObject = new Date(this.miningRevenues[0].date);
         dateObject.setDate(dateObject.getDate() + 1);
 
@@ -116,14 +117,25 @@ export class AppComponent implements OnInit {
           uptimePercent: 0,
           timeInHours: 0,
           totalKilowattHours: 0,
-          totalRevenueBTC: (this.pendingBalance - this.totalRevenueBtc).toString().slice(0,10),
-          totalRevenueUSD: (this.pendingBalance - this.totalRevenueBtc) * this.currentBitcoinPrice,
+          totalRevenueBTC: (this.totalRevenueBtc - this.transactionTotalRevenue - this.pendingBalance).toString().slice(0,10),
+          totalRevenueUSD: (this.totalRevenueBtc - this.transactionTotalRevenue - this.pendingBalance) * this.currentBitcoinPrice,
           totalCost: 0,
           totalProfit: 0,
           hashrate : 0
         }
 
         this.miningRevenues.unshift(estimatedMiningRevenue)
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getTransactionTotalsHistory() {
+    this.http.get<number>(`${environment.apiUrl}Miner/GetTransactionTotalsHistory`).subscribe(
+      (result) => {
+        this.transactionTotalRevenue = result;
       },
       (error) => {
         console.error(error);
