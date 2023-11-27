@@ -111,7 +111,7 @@ export class AppComponent implements OnInit {
 
         let estimatedMiningRevenue: MiningRevenue = {
           date: dateObject.toISOString(),
-          uptimePercent: 0,w
+          uptimePercent: 0,
           timeInHours: 0,
           totalKilowattHours: 0,
           totalRevenueBTC: (this.totalRevenueBtc - this.transactionTotalRevenue - this.pendingBalance).toString().slice(0,10),
