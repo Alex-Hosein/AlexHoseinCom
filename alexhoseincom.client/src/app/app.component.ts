@@ -106,15 +106,12 @@ export class AppComponent implements OnInit {
     this.http.get<string>(`${environment.apiUrl}Miner/GetPendingBalance`).subscribe(
       (result) => {
         this.pendingBalance = parseFloat(result);
-        console.log(this.totalRevenueBtc)
-        console.log(this.transactionTotalRevenue)
-        console.log(this.pendingBalance)
         let dateObject = new Date(this.miningRevenues[0].date);
         dateObject.setDate(dateObject.getDate() + 1);
 
         let estimatedMiningRevenue: MiningRevenue = {
           date: dateObject.toISOString(),
-          uptimePercent: 0,
+          uptimePercent: 0,w
           timeInHours: 0,
           totalKilowattHours: 0,
           totalRevenueBTC: (this.totalRevenueBtc - this.transactionTotalRevenue - this.pendingBalance).toString().slice(0,10),
