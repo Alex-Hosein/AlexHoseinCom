@@ -1,0 +1,96 @@
+<h2>Electricity Charges (PSEGLI)</h2>
+
+  <table>
+    <tr>
+      <th>Category</th>
+      <th>Title</th>
+      <th>Unit</th>
+      <th>Cost per unit</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <td rowspan="4" class="title">Delivery & System Charge</td>
+      <td>Basic Service</td>
+      <td><input type="number" [(ngModel)]="basicServiceDays" (change)="updateTotals()"> Days</td>
+      <td>$ {{ basicServiceCostPerDay }}</td>
+      <td>$ {{ basicServiceTotal.toFixed(2) }}</td>
+    </tr>
+    <tr>
+      <td>Monthly Facilities Charge(MFC)</td>
+      <td><input type="number" [(ngModel)]="kilowattHours" (change)="updateTotals()"> KWH</td>
+      <td> ${{mfcCostPerKWH}}</td>
+      <td>$ {{ mfcTotal.toFixed(2) }}</td>
+    </tr>
+    <tr>
+      <td>Delivery Charge</td>
+      <td> {{kilowattHours}} KWH</td>
+      <td>$ {{deliveryChargeKwhPrice}} </td>
+      <td>$ {{ totalDeliveryCharge.toFixed(2) }}</td>
+    </tr>
+    <tr class="total">
+      <td colspan="3">Total</td>
+      <td>$ {{totalDeliveryAndSystemCharge.toFixed(2)}}</td>
+    </tr>
+    <tr>
+      <td rowspan="2" class="title">Power Supply Charges</td>
+      <td>Electricity Cost</td>
+      <td> {{kilowattHours}} KWH</td>
+      <td>${{powerSupplyCostPerUnit}}</td>
+      <td>$ {{ totalPowerSupplyCost.toFixed(2) }}</td>
+    </tr>
+    <tr class="total">
+      <td colspan="3">Total</td>
+      <td>$ {{ totalPowerSupplyCost.toFixed(2) }}</td>
+    </tr>
+    <tr>
+      <td rowspan="8" class="title">Taxes & Other Charges</td>
+      <td>DER Charge</td>
+      <td> {{kilowattHours}} KWH</td>
+      <td>$ {{derChargeCostPerUnit}}</td>
+      <td>$ {{totalDerChargeCost.toFixed(2)}}</td>
+    </tr>
+    <tr>
+      <td>Delivery Service Adjustment</td>
+      <td></td>
+      <td>{{(deliveryServiceAdjustment * 100).toFixed(2)}}%</td>
+      <td>$ {{totalDeliveryServiceAdjustment.toFixed(2)}}</td>
+    </tr>
+    <tr>
+      <td>Revenue Decoupling Adjustment</td>
+      <td></td>
+      <td>{{(revenueDecouplingAdjustmentApproximateCost * 100).toFixed(2)}}%</td>
+      <td>$ {{totalRevenueDecouplingAdjustment.toFixed(2)}}</td>
+    </tr>
+    <tr>
+      <td>NY State Assessment</td>
+      <td></td>
+      <td>{{(nyStateAssessmentApproximateCost * 100).toFixed(2)}}%</td>
+      <td>${{totalNyStateAssessment.toFixed(2)}}</td>
+    </tr>
+    <tr>
+      <td>Revenue-Based PILOTS</td>
+      <td></td>
+      <td>{{(revenueBasedPilotEstimatedCost * 100).toFixed(2)}}%</td>
+      <td>${{totalRevenueBasedPilot.toFixed(2)}}</td>
+    </tr>
+    <tr>
+      <td>Suffolk Property Tax Adjustment</td>
+      <td></td>
+      <td>{{(suffolkPropertyTaxAdjustment * 100).toFixed(2)}}%</td>
+      <td>${{totalsuffolkPropertyTaxAdjustment.toFixed(2)}}</td>
+    </tr>
+    <tr>
+      <td>Sales Tax @ 2.5%</td>
+      <td></td>
+      <td>{{(salesTax * 100).toFixed(2)}}%</td>
+      <td>${{totalSalesTax.toFixed(2)}}</td>
+    </tr>
+    <tr class="total">
+      <td colspan="3">Total</td>
+      <td>${{totalTaxesAndOtherCharges.toFixed(2)}}</td>
+    </tr>
+    <tr class="total">
+        <td rowspan="1" class="title" colspan="4">Total</td>
+        <td>$ {{ totals.toFixed(2) }}</td>
+      </tr>
+  </table>
