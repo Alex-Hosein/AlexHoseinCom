@@ -34,7 +34,7 @@
       <td>{{ miningRevenue.timeInHours | number:'1.2-2'}}</td>
       <td>{{ miningRevenue.hashrate  | number:'1.2-2'}}</td>
       <td>{{ miningRevenue.totalKilowattHours | number:'1.2-2'}}</td>
-      <td>{{ miningRevenue.totalRevenueBTC }}</td>
+      <td>{{ miningRevenue.totalRevenueBTC | number:'1.8-8'}}</td>
       <td>{{ miningRevenue.totalRevenueUSD | currency:'USD':'symbol':'1.2-2'}}</td>
       <td>{{ miningRevenue.totalCost | currency:'USD':'symbol':'1.2-2'}}</td>
       <td [ngClass]="{ 'positive': miningRevenue.totalProfit >= 0, 'negative': miningRevenue.totalProfit < 0 }">{{ miningRevenue.totalProfit | currency:'USD':'symbol':'1.2-2'}}</td>

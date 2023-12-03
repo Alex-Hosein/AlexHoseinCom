@@ -7,7 +7,7 @@ interface MiningRevenueResponse {
   date: string;
   uptimePercent: number;
   timeInHours: number;
-  totalRevenueBTC: string;
+  totalRevenueBTC: number;
   hashrate: number;
 }
 
@@ -16,7 +16,7 @@ interface MiningRevenue {
   uptimePercent: number;
   timeInHours: number;
   totalKilowattHours: number;
-  totalRevenueBTC: string;
+  totalRevenueBTC: number;
   totalRevenueUSD: number;
   totalCost: number;
   totalProfit: number;
@@ -55,7 +55,7 @@ export class MinerComponent implements OnInit{
       (result) => {
 
         result.forEach(miningRevenueResponse => {
-          let totalRevenueBtcParse = parseFloat(miningRevenueResponse.totalRevenueBTC);
+          let totalRevenueBtcParse = miningRevenueResponse.totalRevenueBTC;
           let totalKilowattHours = miningRevenueResponse.timeInHours * 2832 / 1000;
           let totalRevenue = totalRevenueBtcParse  * this.currentBitcoinPrice;
           let totalCost = totalKilowattHours * this.pricePerKilowattHour
@@ -85,7 +85,7 @@ export class MinerComponent implements OnInit{
       (error) => {
         console.error(error);
       }, () => {
-       // this.getPendingBalance();
+        this.getPendingBalance();
       }
     );
   }
@@ -107,19 +107,19 @@ export class MinerComponent implements OnInit{
       (result) => {
         this.pendingBalance = parseFloat(result);
         let dateObject = new Date(this.miningRevenues[0].date);
-        let test = this.totalRevenueBtc - this.transactionTotalRevenue;
-        dateObject.setDate(dateObject.getDate() + 1);
+        console.log(this.transactionTotalRevenue)
         console.log(this.pendingBalance)
         console.log(this.totalRevenueBtc)
-        console.log(this.transactionTotalRevenue)
-        console.log(this.totalRevenueBtc - this.transactionTotalRevenue);
+        let totalRevenueUSD = this.transactionTotalRevenue + this.pendingBalance - this.totalRevenueBtc;
+        dateObject.setDate(dateObject.getDate() + 1);
+
         let estimatedMiningRevenue: MiningRevenue = {
           date: dateObject.toISOString(),
           uptimePercent: 0,
           timeInHours: 0,
           totalKilowattHours: 0,
-          totalRevenueBTC: (test).toString().slice(0, 10),
-          totalRevenueUSD: (test) * this.currentBitcoinPrice,
+          totalRevenueBTC: totalRevenueUSD,
+          totalRevenueUSD: totalRevenueUSD * this.currentBitcoinPrice,
           totalCost: 0,
           totalProfit: 0,
           hashrate : 0

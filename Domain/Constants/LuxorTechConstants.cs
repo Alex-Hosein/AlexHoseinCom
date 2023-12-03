@@ -7,7 +7,7 @@
         public const string HeaderKey = "x-lux-api-key";
 
         public const string GetWorkerDetailsQuery = @"query getWorkerDetails {
-              getWorkerDetails(duration: { days: 10 }, mpn: BTC, uname: ""coldbakd"", first: 10) {
+              getWorkerDetails(duration: { days: 100 }, mpn: BTC, uname: ""coldbakd"", first: 10) {
                 edges {
                   node {
                     minerId
@@ -62,7 +62,7 @@
             }";
 
         public const string GetHashRateScoreHistory = @"query getHashrateScoreHistory {
-              getHashrateScoreHistory(mpn: BTC, uname: ""coldbakd"", first: 10, orderBy: DATE_DESC) {
+              getHashrateScoreHistory(mpn: BTC, uname: ""coldbakd"", first: 100, orderBy: DATE_DESC) {
                 edges {
                   node {
                     date
