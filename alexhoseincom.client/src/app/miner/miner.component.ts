@@ -55,15 +55,14 @@ export class MinerComponent implements OnInit{
       (result) => {
 
         result.forEach(miningRevenueResponse => {
-          let totalRevenueBtcParse = miningRevenueResponse.totalRevenueBTC;
           let totalKilowattHours = miningRevenueResponse.timeInHours * 2832 / 1000;
-          let totalRevenue = totalRevenueBtcParse  * this.currentBitcoinPrice;
+          let totalRevenue = miningRevenueResponse.totalRevenueBTC  * this.currentBitcoinPrice;
           let totalCost = totalKilowattHours * this.pricePerKilowattHour
 
           this.totalUptimePercent += (miningRevenueResponse.uptimePercent / result.length);
           this.totalTimeInHours += miningRevenueResponse.timeInHours;
           this.totalKilowattHours += totalKilowattHours;
-          this.totalRevenueBtc += totalRevenueBtcParse;
+          this.totalRevenueBtc += miningRevenueResponse.totalRevenueBTC;
           this.totalRevenueUsd += totalRevenue;
           this.totalCost += totalCost;
           this.totalProfit += totalRevenue - totalCost;
@@ -110,7 +109,7 @@ export class MinerComponent implements OnInit{
         console.log(this.transactionTotalRevenue)
         console.log(this.pendingBalance)
         console.log(this.totalRevenueBtc)
-        let totalRevenueUSD = this.transactionTotalRevenue + this.pendingBalance - this.totalRevenueBtc;
+        let totalRevenueBtc = this.pendingBalance + this.totalRevenueBtc - this.transactionTotalRevenue - this.miningRevenues[0].totalRevenueBTC;
         dateObject.setDate(dateObject.getDate() + 1);
 
         let estimatedMiningRevenue: MiningRevenue = {
@@ -118,8 +117,8 @@ export class MinerComponent implements OnInit{
           uptimePercent: 0,
           timeInHours: 0,
           totalKilowattHours: 0,
-          totalRevenueBTC: totalRevenueUSD,
-          totalRevenueUSD: totalRevenueUSD * this.currentBitcoinPrice,
+          totalRevenueBTC: totalRevenueBtc,
+          totalRevenueUSD: totalRevenueBtc * this.currentBitcoinPrice,
           totalCost: 0,
           totalProfit: 0,
           hashrate : 0
