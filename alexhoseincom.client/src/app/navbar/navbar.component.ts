@@ -1,4 +1,4 @@
-// navbar.component.ts
+// src/app/navbar/navbar.component.ts
 import { Component } from '@angular/core';
 
 @Component({
