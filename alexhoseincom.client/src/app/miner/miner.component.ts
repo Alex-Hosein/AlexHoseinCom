@@ -95,7 +95,7 @@ export class MinerComponent implements OnInit {
 
           let totalKilowattHours = miningRevenueResponse.timeInHours * 2832 / 1000;
           let totalRevenue = miningRevenueResponse.totalRevenueBTC * this.currentBitcoinPrice;
-          let totalCost = totalKilowattHours * this.pricePerKilowattHour;
+          let totalCost = (miningRevenueResponse.hashrate * 100 / miningRevenueResponse.uptimePercent) > 150 ? totalKilowattHours * (this.pricePerKilowattHour * 2) : totalKilowattHours * this.pricePerKilowattHour;
 
           this.totalUptimePercent += (miningRevenueResponse.uptimePercent / result.length);
           this.totalTimeInHours += miningRevenueResponse.timeInHours;
