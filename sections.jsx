@@ -204,94 +204,12 @@ function PortraitSlot() {
       width: "100%",
       maxWidth: 420,
       borderRadius: 20,
-      background: `
-        repeating-linear-gradient(135deg,
-          rgba(255,255,255,0.025) 0 2px,
-          transparent 2px 14px),
-        linear-gradient(160deg, rgba(109,217,255,0.06), rgba(120,140,255,0.04) 60%, transparent),
-        linear-gradient(180deg, var(--surface), var(--surface-2))`,
       boxShadow: "0 30px 80px -30px rgba(0,0,0,0.6), 0 0 0 1px var(--line) inset",
       overflow: "hidden",
     }}>
-      {/* corner crops */}
-      {[
-        { top: 12, left: 12, borders: "ltr" },
-        { top: 12, right: 12, borders: "ltl" },
-        { bottom: 12, left: 12, borders: "lbr" },
-        { bottom: 12, right: 12, borders: "lbl" },
-      ].map((c, i) => (
-        <div key={i} style={{
-          position: "absolute", width: 16, height: 16,
-          ...c,
-          borderTop: c.top != null ? "1px solid var(--text-3)" : "none",
-          borderBottom: c.bottom != null ? "1px solid var(--text-3)" : "none",
-          borderLeft: c.left != null ? "1px solid var(--text-3)" : "none",
-          borderRight: c.right != null ? "1px solid var(--text-3)" : "none",
-          opacity: .5,
-        }} />
-      ))}
-
-      {/* center label */}
-      <div style={{
-        position: "absolute", inset: 0, display: "grid", placeItems: "center",
-        textAlign: "center", padding: 24,
-      }}>
-        <div>
-          <div style={{
-            width: 64, height: 64, margin: "0 auto 18px",
-            borderRadius: 999,
-            border: "1px dashed var(--text-3)",
-            display: "grid", placeItems: "center",
-            color: "var(--text-3)",
-          }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <circle cx="12" cy="9" r="3.5" />
-              <path d="M5 20c1.5-3.5 4-5 7-5s5.5 1.5 7 5" strokeLinecap="round"/>
-            </svg>
-          </div>
-          <div style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: ".18em",
-                        textTransform: "uppercase", color: "var(--text-3)" }}>
-            portrait.jpg
-          </div>
-          <div style={{ marginTop: 6, fontSize: 12.5, color: "var(--text-3)", maxWidth: 220, margin: "6px auto 0" }}>
-            Drop a real photo here — LinkedIn / Amazon Photos / Facebook source
-          </div>
-        </div>
-      </div>
-
-      {/* top label bar */}
-      <div style={{
-        position: "absolute", top: 0, left: 0, right: 0,
-        padding: "10px 14px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        fontFamily: "var(--mono)", fontSize: 10.5, color: "var(--text-3)",
-        letterSpacing: ".14em", textTransform: "uppercase",
-        borderBottom: "1px solid var(--line)",
-        background: "linear-gradient(180deg, rgba(255,255,255,0.02), transparent)",
-      }}>
-        <span>· portrait</span>
-        <span>4:5 · 1620 × 2025</span>
-      </div>
-
-      {/* bottom signature */}
-      <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0,
-        padding: "12px 14px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        borderTop: "1px solid var(--line)",
-        background: "linear-gradient(0deg, rgba(0,0,0,0.25), transparent)",
-        fontFamily: "var(--mono)", fontSize: 10.5, color: "var(--text-2)",
-        letterSpacing: ".06em",
-      }}>
-        <span>Alex Hosein</span>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "var(--accent)" }}>
-          <span style={{
-            width: 6, height: 6, borderRadius: 999, background: "var(--accent)",
-            boxShadow: "0 0 8px var(--accent-glow)",
-          }} />
-          available
-        </span>
-      </div>
+      <img src="portrait.png" alt="Alex Hosein" style={{
+        width: "100%", height: "100%", objectFit: "cover", display: "block",
+      }} />
     </div>
   );
 }
@@ -1161,9 +1079,9 @@ function Contact() {
       icon: <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M3.6 14h2.5V6.3H3.6V14zM4.85 5.2a1.45 1.45 0 1 0 0-2.9 1.45 1.45 0 0 0 0 2.9zM14 14h-2.5V9.9c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2V14H6V6.3h2.4v1.05h.03c.34-.63 1.16-1.3 2.4-1.3 2.56 0 3.04 1.7 3.04 3.9V14z"/></svg> },
     { label: "Email",       detail: "me@alexhosein.com", href: "mailto:me@alexhosein.com",
       icon: <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="3.5" width="12" height="9" rx="1.2"/><path d="M2.5 4.5l5.5 4 5.5-4" strokeLinecap="round"/></svg> },
-    { label: "GitHub",      detail: "github.com/alexhosein", href: "#",
+    { label: "GitHub",      detail: "github.com/alexhosein", href: "https://github.com/Alex-Hosein/",
       icon: <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 0 0-2.05 12.67c.32.06.44-.14.44-.31v-1.2c-1.81.4-2.19-.77-2.19-.77-.3-.75-.72-.96-.72-.96-.59-.4.04-.4.04-.4.65.05 1 .67 1 .67.58 1 1.52.71 1.89.54.06-.42.23-.71.41-.87-1.45-.16-2.98-.72-2.98-3.22 0-.71.25-1.29.67-1.75-.07-.16-.29-.83.06-1.73 0 0 .54-.18 1.78.67a6.1 6.1 0 0 1 3.24 0c1.24-.85 1.78-.67 1.78-.67.35.9.13 1.57.07 1.73.41.46.66 1.04.66 1.75 0 2.5-1.53 3.06-2.99 3.22.24.2.45.6.45 1.2v1.78c0 .17.12.38.45.31A6.5 6.5 0 0 0 8 1.5z"/></svg> },
-    { label: "X · Twitter", detail: "@alexhosein", href: "#",
+    { label: "X · Twitter", detail: "@TheAlexHosein", href: "https://x.com/TheAlexHosein",
       icon: <svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor"><path d="M11.5 2h2.05L9.05 7.18 14.3 14h-4.13L7.06 9.83 3.47 14H1.42l4.83-5.55L1 2h4.24l2.78 3.79L11.5 2zm-.72 10.78h1.14L4.97 3.15H3.74l7.04 9.63z"/></svg> },
   ];
 
