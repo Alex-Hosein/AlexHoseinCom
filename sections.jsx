@@ -995,7 +995,7 @@ function HowIThink() {
               <div className="card" style={{
                 flex: 1,
                 padding: 30, minHeight: 240,
-                display: "flex", flexDirection: "column", justifyContent: "space-between",
+                display: "flex", flexDirection: "column", gap: 24,
                 position: "relative",
                 background: i === 1
                   ? "linear-gradient(180deg, var(--accent-soft), rgba(255,255,255,0.005))"
