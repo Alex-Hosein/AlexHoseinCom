@@ -304,7 +304,7 @@ function Hero() {
           }} className="hero-meta">
             <div><span style={{ color: "var(--text-2)" }}>Currently</span><br/>Building HoZyne · Vitae</div>
             <div><span style={{ color: "var(--text-2)" }}>Domain</span><br/>Fixed Income · AI · Product</div>
-            <div><span style={{ color: "var(--text-2)" }}>Stack</span><br/>Python · TS · React · Next</div>
+            <div><span style={{ color: "var(--text-2)" }}>Stack</span><br/>C# · Python · TS · AWS</div>
             <div style={{ textAlign: "right" }}><span style={{ color: "var(--text-2)" }}>Status</span><br/>
               <span style={{ color: "var(--accent)" }}>● open to conversations</span>
             </div>
