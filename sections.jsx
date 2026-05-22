@@ -329,7 +329,7 @@ function Hero() {
 
 function About() {
   const paragraphs = [
-    "I'm a software engineer and Senior Quantitative Developer with experience building financial systems, automation tools, and AI-enabled workflows. My background sits at the intersection of markets, engineering, and product thinking.",
+    "I'm a Software Engineer and Senior Quantitative Developer with experience building financial systems, automation tools, and AI-enabled workflows. My background sits at the intersection of markets, engineering, and product thinking.",
     "Outside of my professional work, I'm building HoZyne, a technology company focused on practical software products. I'm also building Vitae, a workout tracking product focused on clean training execution, progress tracking, and performance analytics.",
     "I'm interested in systems that create leverage: financial infrastructure, AI agents, developer tools, fitness platforms, education systems, and products that help people perform better.",
     "When I'm not coding or building, I'm usually training, learning Spanish, studying markets, experimenting with AI tools, or planning the next product.",
@@ -339,7 +339,7 @@ function About() {
     ["LOCATION", "Remote · NYC orbit"],
     ["LANGUAGES", "English · Aprendiendo Español"],
     ["FOCUS", "Markets · AI · Product"],
-    ["INTERESTS", "Training · Systems · Writing"],
+    ["INTERESTS", "Training · Systems · Coding"],
   ];
 
   return (
@@ -383,7 +383,7 @@ function About() {
                 ))}
               </div>
               <div style={{ marginTop: 22, display: "flex", flexWrap: "wrap", gap: 6 }}>
-                {["systems thinking", "calm execution", "writes daily", "AI-native"].map(t => <Tag key={t}>{t}</Tag>)}
+                {["systems thinking", "calm execution", "AI-native"].map(t => <Tag key={t}>{t}</Tag>)}
               </div>
             </div>
           </Reveal>
@@ -991,8 +991,9 @@ function HowIThink() {
           gap: 16,
         }}>
           {cards.map((c, i) => (
-            <Reveal key={c.title} delay={i * 90}>
+            <Reveal key={c.title} delay={i * 90} style={{ display: "flex", flexDirection: "column" }}>
               <div className="card" style={{
+                flex: 1,
                 padding: 30, minHeight: 240,
                 display: "flex", flexDirection: "column", justifyContent: "space-between",
                 position: "relative",
