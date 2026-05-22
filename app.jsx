@@ -1,8 +1,8 @@
 // app.jsx — main composition + Tweaks wiring
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "accent": "#6DD9FF",
-  "background": "#07090E",
+  "accent": "#B197FC",
+  "background": "#0E0B1A",
   "showGrid": true,
   "fontScale": 1
 }/*EDITMODE-END*/;
