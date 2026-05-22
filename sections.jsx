@@ -576,21 +576,43 @@ function ProjectCard({ project, span, className = "" }) {
         {project.tags.map(t => <Tag key={t}>{t}</Tag>)}
       </div>
 
-      <div style={{ marginTop: 18, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <span style={{ fontSize: 12, color: "var(--text-3)" }}>
-          {project.link || "Case study coming soon"}
-        </span>
-        <span style={{
-          width: 28, height: 28, borderRadius: 999,
-          border: "1px solid var(--line-strong)",
-          display: "grid", placeItems: "center",
-          color: "var(--text-2)",
-        }}>
-          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6">
-            <path d="M5 11l6-6M6 5h5v5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </span>
-      </div>
+      {project.href ? (
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ marginTop: 18, display: "flex", alignItems: "center", justifyContent: "space-between", textDecoration: "none" }}
+          onClick={e => e.stopPropagation()}
+        >
+          <span style={{ fontSize: 12, color: "var(--accent)" }}>{project.link}</span>
+          <span style={{
+            width: 28, height: 28, borderRadius: 999,
+            border: "1px solid var(--accent)",
+            display: "grid", placeItems: "center",
+            color: "var(--accent)",
+          }}>
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6">
+              <path d="M5 11l6-6M6 5h5v5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      ) : (
+        <div style={{ marginTop: 18, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span style={{ fontSize: 12, color: "var(--text-3)" }}>
+            {project.link || "Case study coming soon"}
+          </span>
+          <span style={{
+            width: 28, height: 28, borderRadius: 999,
+            border: "1px solid var(--line-strong)",
+            display: "grid", placeItems: "center",
+            color: "var(--text-2)",
+          }}>
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6">
+              <path d="M5 11l6-6M6 5h5v5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      )}
     </Reveal>
   );
 }
@@ -741,9 +763,10 @@ function Work() {
       title: "HoZyne",
       copy: "A technology company focused on building practical software systems, AI tools, and digital products.",
       tags: ["Software", "AI", "Systems", "Product"],
-      glyph: "Hz", glyphBg: "var(--accent-soft)", glyphColor: "var(--accent)",
+      glyph: "H", glyphBg: "var(--accent-soft)", glyphColor: "var(--accent)",
       status: "Operating",
-      link: "hozyne.com",
+      link: "HoZyne.com",
+      href: "https://HoZyne.com",
       viz: <VizGrid />,
       large: true,
     },
@@ -752,7 +775,9 @@ function Work() {
       copy: "A modern workout tracking app focused on training logs, progressive overload, analytics, exercise history, and clean client-side workout execution.",
       tags: ["Workout Tracker", "Fitness Tech", "Analytics", "Training Logs"],
       glyph: "V", glyphBg: "rgba(94,234,212,0.10)", glyphColor: "#5EEAD4",
-      status: "Building",
+      status: "Live · iOS",
+      link: "View on App Store",
+      href: "https://apps.apple.com/us/app/vitae-workout-tracker/id6761954056",
       viz: <VizPhone />,
     },
     {
@@ -834,19 +859,19 @@ function Skills() {
       title: "Engineering",
       icon: "{ }",
       copy: "Software architecture, full-stack development, API design, automation, data pipelines.",
-      stack: ["Python", "TypeScript", "JavaScript", "React", "Next.js", "Firebase", "Postgres", "Node"],
+      stack: ["C#", "Python", "TypeScript", "SQL", "React", "Angular", "Postgres", "Node"],
     },
     {
       title: "Finance & Quant",
       icon: "Σ",
-      copy: "Fixed income systems, financial workflows, market structure, derivatives fundamentals, risk and analytics, quantitative tooling.",
-      stack: ["Fixed Income", "Derivatives", "Risk", "Market Structure", "Quant Research"],
+      copy: "Fixed income systems, financial workflows, market structure, risk and analytics, quantitative tooling.",
+      stack: ["Fixed Income", "Risk", "Market Structure", "Quant Research"],
     },
     {
       title: "AI & Product",
       icon: "✶",
       copy: "AI-assisted development, agentic workflows, prompt engineering, product strategy, internal tool design, developer productivity systems.",
-      stack: ["Claude", "Codex", "v0", "Agents", "Eval pipelines", "Prompt design"],
+      stack: ["Claude", "Codex", "OpenAI", "Agents", "Eval pipelines", "Prompt design"],
     },
     {
       title: "Fitness & Personal Systems",
@@ -1077,7 +1102,7 @@ function Contact() {
   const channels = [
     { label: "LinkedIn",    detail: "linkedin.com/in/alex-hosein", href: "https://linkedin.com/in/alex-hosein", primary: true,
       icon: <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M3.6 14h2.5V6.3H3.6V14zM4.85 5.2a1.45 1.45 0 1 0 0-2.9 1.45 1.45 0 0 0 0 2.9zM14 14h-2.5V9.9c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2V14H6V6.3h2.4v1.05h.03c.34-.63 1.16-1.3 2.4-1.3 2.56 0 3.04 1.7 3.04 3.9V14z"/></svg> },
-    { label: "Email",       detail: "me@alexhosein.com", href: "mailto:me@alexhosein.com",
+    { label: "Email",       detail: "me@alexhosein.com", href: "mailto:me@AlexHosein.com",
       icon: <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="3.5" width="12" height="9" rx="1.2"/><path d="M2.5 4.5l5.5 4 5.5-4" strokeLinecap="round"/></svg> },
     { label: "GitHub",      detail: "github.com/alexhosein", href: "https://github.com/Alex-Hosein/",
       icon: <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 0 0-2.05 12.67c.32.06.44-.14.44-.31v-1.2c-1.81.4-2.19-.77-2.19-.77-.3-.75-.72-.96-.72-.96-.59-.4.04-.4.04-.4.65.05 1 .67 1 .67.58 1 1.52.71 1.89.54.06-.42.23-.71.41-.87-1.45-.16-2.98-.72-2.98-3.22 0-.71.25-1.29.67-1.75-.07-.16-.29-.83.06-1.73 0 0 .54-.18 1.78.67a6.1 6.1 0 0 1 3.24 0c1.24-.85 1.78-.67 1.78-.67.35.9.13 1.57.07 1.73.41.46.66 1.04.66 1.75 0 2.5-1.53 3.06-2.99 3.22.24.2.45.6.45 1.2v1.78c0 .17.12.38.45.31A6.5 6.5 0 0 0 8 1.5z"/></svg> },
@@ -1164,7 +1189,7 @@ function Contact() {
           flexWrap: "wrap", gap: 16,
         }}>
           <div style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--text-3)", letterSpacing: ".14em" }}>
-            ALEXHOSEIN.COM · BUILT FROM SCRATCH · © 2026
+            ALEXHOSEIN.COM © 2026
           </div>
           <div style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--text-3)", letterSpacing: ".14em" }}>
             <span style={{ color: "var(--accent)" }}>●</span> AVAILABLE FOR CONVERSATIONS
